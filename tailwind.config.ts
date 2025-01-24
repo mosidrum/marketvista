@@ -11,10 +11,10 @@ export default {
       colors: {
         lightOrange: "#e89451",
         darkOrange: "#c8560c",
-        lightText: "#eaecee",
+        lightText: "#818181",
         accent: "#120101",
         accentWhite: "#fbfbf5",
-        lightRead: "#b78cc6",
+        lightRed: "#eb5406",
         lightGreen: "#54b57d",
         bgLight: "#f4f6f7",
       },
