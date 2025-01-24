@@ -2,6 +2,7 @@ import React from "react";
 import { Container } from "../Container";
 import { Logo } from "./Logo";
 import { SearchInput } from "./SearchInput";
+import { NavbarList } from "./NavBarList";
 
 export const Navbar = () => {
   return (
@@ -9,7 +10,7 @@ export const Navbar = () => {
       <Container className="h-full flex items-center justify-between gap-5 lg:gap-10">
         <Logo />
         <SearchInput />
-        <div>navBarList</div>
+        <NavbarList />
       </Container>
     </header>
   );
