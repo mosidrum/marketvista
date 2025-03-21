@@ -1,9 +1,9 @@
-import { Container } from "../components";
+import { Banner, Container } from "../components";
 
 export default function Home() {
   return (
-    <Container className="py-32">
-      <p>MarketVista</p>
+    <Container className="py-10">
+      <Banner />
     </Container>
   );
 }
