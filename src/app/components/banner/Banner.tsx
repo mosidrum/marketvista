@@ -13,7 +13,7 @@ export const Banner = async () => {
   const singleBanner = bannerData[0];
 
   return (
-    <Container className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10 md:max-h-[500px]">
+    <Container className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10 md:max-h-[600px]">
       <div className="md:col-span-2 bg-bgLight relative flex items-end justify-end rounded-lg overflow-hidden group">
         <div className="h-full z-10 absolute left-10 top-0 flex flex-col justify-center isolate gap-5 md:gap-10">
           <div className="flex flex-col gap-1 md:gap-3">
@@ -35,12 +35,12 @@ export const Banner = async () => {
         <Image
           src={urlFor(singleBanner?.image).url()}
           alt={singleBanner.title}
-          width={500}
-          height={500}
+          width={400}
+          height={400}
           className="object-contain h-72 md:h-full max-h-[600px] self-end group-hover:scale-105 hoverEffect"
         />
       </div>
-      <div className="flex flex-col space-y-5 md:space-y-10 h-auto md:max-h-[600px]">
+      <div className="flex flex-col space-y-5 md:space-y-10 h-auto md:max-h-[450px]">
         {bannerData.slice(1, 3).map((item: BannerDataType) => (
           <div
             key={item?._id}
@@ -48,8 +48,8 @@ export const Banner = async () => {
           >
             <div className="w-1/2 flex flex-col">
               <div>
-                <p className="text-2xl font-semibold"> {item?.title}</p>
-                <p className="text-3xl font-bold">{item?.subtitle}</p>
+                <p className="text-xl font-semibold"> {item?.title}</p>
+                <p className="text-lg font-bold">{item?.subtitle}</p>
               </div>
               <p className="mt-3 font-medium text-black/60">
                 💰
@@ -70,7 +70,7 @@ export const Banner = async () => {
               alt={item?.title}
               width={500}
               height={500}
-              className="object-contain h-72 md:h-60 w-1/2 group-hover:scale-105 hoverEffect"
+              className="object-contain h-52 md:h-25 w-1/2 group-hover:scale-105 hoverEffect"
             />
           </div>
         ))}
