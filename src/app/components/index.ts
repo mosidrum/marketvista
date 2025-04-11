@@ -4,3 +4,5 @@ export * from "./navbar";
 export * from "./StudioHeader";
 export * from "./banner";
 export * from "./button";
+export * from "./FormattedPrice";
+export * from "./facilities";
