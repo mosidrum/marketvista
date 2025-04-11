@@ -6,3 +6,4 @@ export * from "./banner";
 export * from "./button";
 export * from "./FormattedPrice";
 export * from "./facilities";
+export * from "./products";
