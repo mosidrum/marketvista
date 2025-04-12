@@ -17,8 +17,8 @@ export const Banner = async () => {
       <div className="md:col-span-2 bg-bgLight relative flex items-end justify-end rounded-lg overflow-hidden group">
         <div className="h-full z-10 absolute left-10 top-0 flex flex-col justify-center isolate gap-5 md:gap-10">
           <div className="flex flex-col gap-1 md:gap-3">
-            <button className="bg-lightGreen text-white rounded-full w-20 py-1 text-sm font-semibold hover:bg-green-600 hoverEffect">
-              Sale {singleBanner?.price}
+            <button className="bg-lightGreen text-white rounded-full w-[120px] py-1 text-base font-semibold hover:bg-green-600 hoverEffect">
+              Sale <FormattedPrice amount={singleBanner?.price} />
             </button>
             <p className="text-xl md:text-3xl font-semibold">
               {singleBanner?.title}
