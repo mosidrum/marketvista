@@ -16,6 +16,7 @@ export const ProductCard = ({ item }: { item: ProductionDataType }) => {
             src={urlFor(item?.image).url()}
             alt={item?.title}
             width={500}
+            loading="lazy"
             height={500}
             className="w-full h-72 object-cover group-hover:scale-105 hoverEffect"
           />

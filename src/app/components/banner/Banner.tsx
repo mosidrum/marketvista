@@ -36,6 +36,7 @@ export const Banner = async () => {
           src={urlFor(singleBanner?.image).url()}
           alt={singleBanner.title}
           width={400}
+          priority
           height={400}
           className="object-contain h-72 md:h-full max-h-[600px] self-end group-hover:scale-105 hoverEffect"
         />
@@ -69,6 +70,7 @@ export const Banner = async () => {
               src={urlFor(item?.image).url()}
               alt={item?.title}
               width={500}
+              priority
               height={500}
               className="object-contain h-52 md:h-25 w-1/2 group-hover:scale-105 hoverEffect"
             />

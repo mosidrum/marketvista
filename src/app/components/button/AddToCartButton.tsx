@@ -1,6 +1,7 @@
-'use client'
+"use client";
 import { addToCart } from "@/app/redux";
-import { ProductionDataType } from "@/app/types";
+import { AlertType, ProductionDataType } from "@/app/types";
+import { showAlert } from "@/app/utils";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { twMerge } from "tailwind-merge";
@@ -15,6 +16,10 @@ export const AddToCartButton = ({ item, className }: Props) => {
 
   const handleAddToCart = (item: ProductionDataType) => {
     dispatch(addToCart(item));
+    showAlert(
+      `${item.title.substring(0, 12)} added to cart`,
+      AlertType.SUCCESS
+    );
   };
 
   return (

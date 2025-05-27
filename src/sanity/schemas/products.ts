@@ -76,7 +76,7 @@ export default defineType({
     }),
     defineField({
         name: "quantity",
-        title: "Quality",
+        title: "Quantity",
         type: "number",
     }),
   ],

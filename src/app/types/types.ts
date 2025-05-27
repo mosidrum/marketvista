@@ -52,3 +52,23 @@ export interface ProductionDataType {
   position: string;
   rowprice: number;
 }
+
+export enum AlertType {
+  SUCCESS = "success",
+  WARNING = "warning",
+  ERROR = "error",
+}
+
+export interface User {
+  id: string;
+  nname: string;
+  email: string;
+}
+
+export type StoreState = {
+  marketVista: {
+    wishList: ProductionDataType[];
+    cart: ProductionDataType[];
+    userInfo: User | null;
+  };
+};
