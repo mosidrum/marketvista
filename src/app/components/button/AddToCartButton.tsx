@@ -1,5 +1,8 @@
+'use client'
+import { addToCart } from "@/app/redux";
 import { ProductionDataType } from "@/app/types";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { twMerge } from "tailwind-merge";
 
 interface Props {
@@ -7,9 +10,16 @@ interface Props {
   className?: string;
 }
 
-export const AddToCartButton = ({ item, className }: props) => {
+export const AddToCartButton = ({ item, className }: Props) => {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (item: ProductionDataType) => {
+    dispatch(addToCart(item));
+  };
+
   return (
     <button
+      onClick={() => handleAddToCart(item)}
       className={twMerge(
         `bg-accent text-white w-full py-2 border border-px border-accent hover:bg-darkOrange hover:border-darkOrange hoverEfffect font-semibold tracking-wide flex items-center justify-center gap-1`,
         className
