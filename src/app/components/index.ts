@@ -8,3 +8,4 @@ export * from "./FormattedPrice";
 export * from "./facilities";
 export * from "./products";
 export * from "./Loader";
+export * from "./Sidebar";
