@@ -33,16 +33,16 @@ export const marketVistaSlice = createSlice({
       const existingItem = state.cart.find(
         (item) => item._id === action.payload
       );
-      if (existingItem) existingItem.quantity += 1;
+      if (existingItem) existingItem.quantity += 1 as number;
     },
     decreaseQuantity: (state, action) => {
       const existingItem = state.cart.find(
         (item) => item._id === action.payload
       );
-      if (existingItem) existingItem.quantity -= 1;
+      if (existingItem) existingItem.quantity -= 1 as number;
     },
     removeItemFromCart: (state, action) => {
-      state.cart = state.cart.filter((item) => item._id !== action.payload._id);
+      state.cart = state.cart.filter((item) => item._id !== action.payload);
     },
     resetCart: (state) => {
       state.cart = [];
