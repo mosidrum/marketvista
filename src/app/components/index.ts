@@ -10,3 +10,4 @@ export * from "./products";
 export * from "./Loader";
 export * from "./Sidebar";
 export * from "./Layout";
+export * from "./cart/CartContainer";

@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { RiShoppingCart2Fill } from "react-icons/ri";
 import { useSelector } from "react-redux";
-import { StoreState } from "../types";
+import { StoreState } from "../../types";
 
 export const Cart = () => {
   const { cart } = useSelector((state: StoreState) => state?.marketVista);

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { MdSwitchAccount } from "react-icons/md";
-import { Cart } from "./Cart";
+import { Cart } from "./cart/Cart";
 
 export const Sidebar = () => {
   return (
