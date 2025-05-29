@@ -3,13 +3,13 @@ import React from "react";
 import cart from "../../../../public/download.jpeg";
 import { HiMinus, HiPlus } from "react-icons/hi";
 import { FaTimes } from "react-icons/fa";
-import { MdAdd } from "react-icons/md";
+
 import Link from "next/link";
+import { MdAdd } from "react-icons/md";
 
 export const CartItem = () => {
   return (
     <div className="flex flex-col md:flex-row gap-4 justify-between items-start">
-      {/**cart items */}
       <div className="w-full h-20 md:w-4/6 flex justify-between gap-4 p-4 mt-4 rounded-md shadow-custom">
         <div className="flex items-center gap-4">
           <Image src={cart} alt="cart" className="h-10 w-10 md:h-16 md:w-16" />
@@ -30,7 +30,6 @@ export const CartItem = () => {
           <FaTimes className="hover:cursor-pointer" size={20} />
         </div>
       </div>
-      {/**cart items summary */}
       <div className="w-full md:w-2/6 p-8 shadow-custom">
         <p className="text-2xl font-bold text-left mb-8 text-lightOrange">
           Summary
