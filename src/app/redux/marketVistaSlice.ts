@@ -27,7 +27,7 @@ export const marketVistaSlice = createSlice({
               ? { ...item, quantity: item.quantity + 1 }
               : item
           )
-        : [...state.cart, action.payload];
+        : [...state.cart, { ...action.payload, quantity: 1 }];
     },
     increaseQuantity: (state, action) => {
       const existingItem = state.cart.find(

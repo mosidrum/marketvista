@@ -8,6 +8,7 @@ import { StoreState } from "../../types";
 
 export const Cart = () => {
   const { cart } = useSelector((state: StoreState) => state?.marketVista);
+  console.log(cart);
 
   return (
     <div>
