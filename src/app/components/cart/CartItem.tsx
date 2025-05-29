@@ -4,6 +4,7 @@ import { HiMinus, HiPlus } from "react-icons/hi";
 import { FaTimes } from "react-icons/fa";
 import { ProductionDataType } from "@/app/types";
 import { urlFor } from "@/sanity/lib/image";
+import { FormattedPrice } from "../FormattedPrice";
 
 type CartItemType = {
   item: ProductionDataType;
@@ -31,9 +32,7 @@ export const CartItem = ({ item }: CartItemType) => {
           <p>{item?.quantity}</p>
           <HiMinus className="hover:cursor-pointer" />
         </div>
-        <p className="text-sm md:text-base font-bold text-lightOrange">
-          {item?.price}
-        </p>
+        <FormattedPrice amount={item?.price} className="text-lightGreen" />
         <FaTimes className="hover:cursor-pointer" size={20} />
       </div>
     </div>
