@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { MdAdd } from "react-icons/md";
 import { FormattedPrice } from "../FormattedPrice";
+import { Button } from "../button";
 
 type CartSummaryProps = Record<
   | "originalTotal"
@@ -71,12 +72,9 @@ export const CartSummary = ({
             className="text-lightGreen font-bold"
           />
         </div>
-        <Link
-          href={""}
-          className="bg-lightOrange p-2 text-center font-bold rounded-md text-bgLight"
-        >
+        <Button>
           Proceed to checkout
-        </Link>
+        </Button>
       </div>
     </div>
   );

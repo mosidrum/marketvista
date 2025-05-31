@@ -4,13 +4,22 @@ import { twMerge } from "tailwind-merge";
 interface Props {
   className?: string;
   children: ReactNode;
+  onClick: () => void;
+  disable?: boolean;
 }
 
-export const Button = ({ className, children }: Props) => {
+export const Button = ({
+  className,
+  children,
+  onClick,
+  disable = false,
+}: Props) => {
   return (
     <button
+      disabled={disable}
+      onClick={onClick}
       className={twMerge(
-        "bg-lightOrange text-base text-white hover:text-darkOrange hoverEffect md:px-8 md:py-3 rounded-full font-semibold",
+        "bg-lightOrange text-base text-white hover:bg-darkOrange hoverEffect md:px-4 md:py-2 rounded-lg font-semibold",
         className
       )}
     >

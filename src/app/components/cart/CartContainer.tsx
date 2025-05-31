@@ -8,6 +8,7 @@ import Link from "next/link";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { resetCart } from "@/app/redux";
 import { useCalculatePrices } from "@/app/hooks";
+import { Button } from "../button";
 
 export const CartContainer = () => {
   const dispatch = useDispatch();
@@ -30,12 +31,7 @@ export const CartContainer = () => {
         <div className="flex flex-col md:flex-row gap-4 justify-between items-start">
           <div className="w-full">
             <div className="flex justify-end">
-              <button
-                className="p-2 shadow-custom font-bold rounded-md bg-darkOrange text-bgLight"
-                onClick={() => dispatch(resetCart())}
-              >
-                Reset cart
-              </button>
+              <Button onClick={() => dispatch(resetCart())}>Reset cart</Button>
             </div>{" "}
             {cart.map((item: ProductionDataType, index) => (
               <CartItem item={item} key={index} />
