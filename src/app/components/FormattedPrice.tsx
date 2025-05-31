@@ -10,7 +10,7 @@ export const FormattedPrice = ({ amount, className }: Props) => {
   const priceFormat = new Number(amount).toLocaleString("en-Us", {
     currency: "USD",
     style: "currency",
-    minimumFractionDigits: 2,
+    minimumFractionDigits: 1,
   });
   return (
     <span className={twMerge("text-base font-semibold", className)}>

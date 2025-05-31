@@ -7,10 +7,18 @@ import { CartSummary } from "./CartSummary";
 import Link from "next/link";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { resetCart } from "@/app/redux";
+import { useCalculatePrices } from "@/app/hooks";
 
 export const CartContainer = () => {
   const dispatch = useDispatch();
   const { cart } = useSelector((state: StoreState) => state?.marketVista);
+  const {
+    originalTotal,
+    moneyToTakeOff,
+    numberOfItems,
+    deliveryFee,
+    grandTotal,
+  } = useCalculatePrices(cart);
 
   return (
     <div>
@@ -33,7 +41,13 @@ export const CartContainer = () => {
               <CartItem item={item} key={index} />
             ))}
           </div>
-          <CartSummary />
+          <CartSummary
+            originalTotal={originalTotal}
+            moneyToTakeOff={moneyToTakeOff}
+            numberOfItems={numberOfItems}
+            deliveryFee={deliveryFee}
+            grandTotal={grandTotal}
+          />
         </div>
       ) : (
         <div>No product</div>

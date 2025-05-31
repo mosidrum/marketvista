@@ -39,22 +39,28 @@ export const CartItem = ({ item }: CartItemType) => {
         </div>
       </div>
       <div className="w-2/4 md:w-1/2 flex items-center justify-end gap-4 md:justify-between">
-        <div className="flex items-center gap-1 md:gap-3 px-2 py-1 rounded-lg">
+        <div className="flex items-center gap-1 md:gap-6 px-2 py-1 rounded-lg">
           <div className="w-4 md:w-6 flex justify-center">
             {item?.quantity > 1 ? (
-              <HiMinus
-                className="hover:cursor-pointer"
-                onClick={() => dispatch(decreaseQuantity(item._id))}
-              />
+              <div className="border border-lightOrange p-2 rounded-lg text-lightOrange">
+                <HiMinus
+                  className="hover:cursor-pointer"
+                  onClick={() => dispatch(decreaseQuantity(item._id))}
+                />
+              </div>
             ) : (
-              <HiMinus className="invisible" />
+              <div className="border border-lightOrange p-2 rounded-lg text-lightOrange">
+                <HiMinus className="invisible" />
+              </div>
             )}
           </div>
-          <p>{item?.quantity}</p>
-          <HiPlus
-            className="hover:cursor-pointer"
-            onClick={() => dispatch(increaseQuantity(item._id))}
-          />
+          <p className="font-medium">{item?.quantity}</p>
+          <div className="border border-lightOrange p-2 rounded-lg text-lightOrange">
+            <HiPlus
+              className="hover:cursor-pointer"
+              onClick={() => dispatch(increaseQuantity(item._id))}
+            />
+          </div>
         </div>
         <FormattedPrice
           amount={item?.price * item?.quantity}

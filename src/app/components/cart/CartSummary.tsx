@@ -1,10 +1,26 @@
 import Link from "next/link";
 import React from "react";
 import { MdAdd } from "react-icons/md";
+import { FormattedPrice } from "../FormattedPrice";
 
-export const CartSummary = () => {
+type CartSummaryProps = Record<
+  | "originalTotal"
+  | "moneyToTakeOff"
+  | "numberOfItems"
+  | "deliveryFee"
+  | "grandTotal",
+  number
+>;
+
+export const CartSummary = ({
+  originalTotal,
+  moneyToTakeOff,
+  numberOfItems,
+  deliveryFee,
+  grandTotal,
+}: CartSummaryProps) => {
   return (
-    <div className="w-full md:w-2/5 p-8 shadow-custom">
+    <div className="w-full md:w-2/5 p-8 shadow-custom rounded-md">
       <p className="text-2xl font-bold text-left mb-8 text-lightOrange">
         Summary
       </p>
@@ -23,19 +39,37 @@ export const CartSummary = () => {
             <span className="font-bold">add</span>
           </Link>
         </div>
+
         <div className="flex items-center justify-between">
-          <p className="text-lightOrange font-bold">SubTotal</p>
-          <p className="font-bold">000</p>
+          <p className="text-lightOrange font-bold">Total items</p>
+          <p className="font-bold">{numberOfItems}</p>
         </div>
 
         <div className="flex items-center justify-between">
-          <p className="text-lightOrange font-bold">Other processing fee</p>
-          <p className="font-bold">000</p>
+          <p className="text-lightOrange font-bold">Total</p>
+          <FormattedPrice amount={originalTotal} />
         </div>
 
         <div className="flex items-center justify-between">
-          <p className="text-lightOrange font-bold">total</p>
-          <p className="font-bold">000</p>
+          <p className="text-lightOrange font-bold">Discount</p>
+          <FormattedPrice amount={moneyToTakeOff} />
+        </div>
+
+        <div className="flex items-center justify-between">
+          <p className="text-lightOrange font-bold">Delivery fee</p>
+          {deliveryFee > 0 ? (
+            <FormattedPrice amount={deliveryFee} />
+          ) : (
+            <span className="text-3xl">🆓</span>
+          )}
+        </div>
+
+        <div className="flex items-center justify-between">
+          <p className="text-lightOrange font-bold">Subtotal</p>
+          <FormattedPrice
+            amount={grandTotal}
+            className="text-lightGreen font-bold"
+          />
         </div>
         <Link
           href={""}
