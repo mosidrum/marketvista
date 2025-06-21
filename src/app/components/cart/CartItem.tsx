@@ -41,16 +41,12 @@ export const CartItem = ({ item }: CartItemType) => {
       <div className="w-2/4 md:w-1/2 flex items-center justify-end gap-4 md:justify-between">
         <div className="flex items-center gap-1 md:gap-6 px-2 py-1 rounded-lg">
           <div className="w-4 md:w-6 flex justify-center">
-            {item?.quantity > 1 ? (
+            {item?.quantity > 1 && (
               <div className="border border-lightOrange p-2 rounded-lg text-lightOrange">
                 <HiMinus
                   className="hover:cursor-pointer"
                   onClick={() => dispatch(decreaseQuantity(item._id))}
                 />
-              </div>
-            ) : (
-              <div className="border border-lightOrange p-2 rounded-lg text-lightOrange">
-                <HiMinus className="invisible" />
               </div>
             )}
           </div>
