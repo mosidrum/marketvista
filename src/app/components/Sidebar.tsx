@@ -2,8 +2,12 @@ import Link from "next/link";
 import React from "react";
 import { MdSwitchAccount } from "react-icons/md";
 import { Cart } from "./cart/Cart";
+import { auth } from "@/auth";
 
-export const Sidebar = () => {
+export const Sidebar = async () => {
+  const session = await auth();
+  console.log(session);
+
   return (
     <div className="fixed top-80 right-2 z-20 gap-2 flex flex-col">
       <Link
