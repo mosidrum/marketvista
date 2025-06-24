@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { IoReturnDownBack } from "react-icons/io5";
-import { Logo } from "./navbar/Logo";
+import { Logo } from "./Navbar/Logo";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const StudioHeader = (props: any) => {

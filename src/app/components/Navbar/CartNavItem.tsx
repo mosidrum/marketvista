@@ -11,8 +11,8 @@ export const CartNavItem = () => {
 
   return (
     <Link href="/cart" className="navBarItem relative flex items-center gap-2">
-      <RiShoppingCart2Fill className="text-xl" />
       <span>Cart</span>
+      <RiShoppingCart2Fill className="text-xl" />
       <span className="absolute -top-2 -right-2 bg-darkOrange text-white text-xs w-4 h-4 rounded-full flex items-center justify-center font-semibold">
         {cart.length > 0 ? cart.length : 0}
       </span>
