@@ -7,7 +7,6 @@ export * from "./FormattedPrice";
 export * from "./facilities";
 export * from "./products";
 export * from "./Loader";
-export * from "./Sidebar";
 export * from "./Layout";
 export * from "./cart/CartContainer";
 export * from "./Navbar";

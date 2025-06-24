@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Footer, Layout, Navbar, Sidebar } from "../components";
+import { Footer, Layout, Navbar } from "../components";
 import { Toaster } from "react-hot-toast";
 import "../globals.css";
 
@@ -44,7 +44,6 @@ export default function RootLayout({
             gutter={12}
           />
           {children}
-          <Sidebar />
           <Footer />
         </Layout>
       </body>
