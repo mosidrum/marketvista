@@ -38,6 +38,14 @@ export default function DashboardPage() {
 
     return (
         <div className="max-w-7xl mx-auto px-6 py-10 space-y-10">
+            <div className="flex justify-between items-center">
+                <h1 className="text-3xl font-bold">Dashboard</h1>
+                <button
+                    className="px-4 py-2 bg-red-500 text-white text-sm rounded-lg shadow hover:bg-red-600"
+                >
+                    Logout
+                </button>
+            </div>
           <h1 className="text-3xl font-bold">Dashboard</h1>
 
           {/* === Cards === */}
