@@ -12,7 +12,7 @@ export const Sidebar = async () => {
   return (
     <div className="fixed top-80 right-2 z-20 gap-2 flex flex-col">
       <Link
-        href={session?.user ? "/dashboard" : "/signin"}
+        href={"/signin"}
         className="bg-accentWhite w-16 h-[70px] rounded-md flex flex-col gap-1 text-accent justify-center items-center shadow-sm shadow-lightGreen group overflow-hidden"
       >
         <div className="flex items-center justify-center">
