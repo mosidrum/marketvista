@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { signOut } from 'next-auth/react';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -36,12 +37,17 @@ export default function DashboardPage() {
       ],
     };
 
+    const handleLogout = async () => {
+      await signOut({ callbackUrl: '/' });
+    };
+
     return (
         <div className="max-w-7xl mx-auto px-6 py-10 space-y-10">
             <div className="flex justify-between items-center">
                 <h1 className="text-3xl font-bold">Dashboard</h1>
                 <button
-                    className="px-4 py-2 bg-red-500 text-white text-sm rounded-lg shadow hover:bg-red-600"
+                    onClick={handleLogout}
+                    className="px-4 py-2 bg-red-500 text-white text-sm rounded-lg shadow hover:bg-red-600 transition-colors"
                 >
                     Logout
                 </button>

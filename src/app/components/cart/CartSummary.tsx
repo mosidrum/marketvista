@@ -1,8 +1,8 @@
 import Link from "next/link";
 import React from "react";
 import { MdAdd } from "react-icons/md";
-import { FormattedPrice } from "../FormattedPrice";
-import { Button } from "../button";
+import { FormattedPrice } from "@/app";
+import { Button } from "@/app";
 import { Session } from "next-auth";
 
 type CartSummaryProps = Record<
@@ -79,7 +79,9 @@ export const CartSummary = ({
         {session ? (
           <Button onClick={() => {}}>Proceed to checkout</Button>
         ) : (
-          <Link href="/signin">Sign In</Link>
+         <div className='w-full bg-lightOrange p-2 rounded-md text-center text-white'>
+           <Link href="/signin">Sign in to checkout</Link>
+         </div>
         )}
       </div>
     </div>

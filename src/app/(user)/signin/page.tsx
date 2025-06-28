@@ -4,9 +4,11 @@ import { Container } from "@/app/components";
 import React, { useState } from "react";
 import google from "@/app/assets/google.png";
 import Image from "next/image";
-import { signIn } from "@/auth";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { MdEmail, MdLock, MdVisibility, MdVisibilityOff } from "react-icons/md";
+import { Button } from "@/app";
+
 
 export default function SignInPage() {
   const [formData, setFormData] = useState({
@@ -75,19 +77,21 @@ export default function SignInPage() {
   };
 
   const handleGoogleSignIn = async () => {
-    await signIn("google", { redirectTo: "/dashboard" });
+    try {
+      await signIn("google", { callbackUrl: "/dashboard" });
+    } catch (error) {
+      console.error("Google sign-in error:", error);
+    }
   };
 
   return (
     <Container className="py-20 flex flex-col justify-center items-center min-h-screen">
       <div className="w-full max-w-md">
-        {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-accent mb-2">Welcome Back</h1>
           <p className="text-lightText">Sign in to your account to continue</p>
         </div>
 
-        {/* Signin Form */}
         <div className="bg-accentWhite rounded-lg shadow-custom p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email Field */}
@@ -114,7 +118,6 @@ export default function SignInPage() {
               )}
             </div>
 
-            {/* Password Field */}
             <div>
               <label htmlFor="password" className="block text-sm font-semibold text-accent mb-2">
                 Password
@@ -145,7 +148,6 @@ export default function SignInPage() {
               )}
             </div>
 
-            {/* Forgot Password Link */}
             <div className="text-right">
               <Link 
                 href="/forgot-password" 
@@ -165,26 +167,23 @@ export default function SignInPage() {
             </button>
           </form>
 
-          {/* Divider */}
           <div className="my-6 flex items-center">
             <div className="flex-1 border-t border-gray-300"></div>
             <span className="px-4 text-sm text-lightText">or</span>
             <div className="flex-1 border-t border-gray-300"></div>
           </div>
 
-          {/* Google Sign In */}
-          <button
+          <Button
             onClick={handleGoogleSignIn}
             className="w-full flex items-center justify-center gap-3 border border-gray-300 bg-white text-accent py-3 px-4 rounded-md font-semibold hover:bg-gray-50 transition-colors"
           >
             <Image src={google} alt="Google" className="w-5 h-5" />
             <span>Sign in with Google</span>
-          </button>
+          </Button>
 
-          {/* Sign Up Link */}
           <div className="text-center mt-6">
             <p className="text-lightText">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link 
                 href="/signup" 
                 className="text-darkOrange hover:text-lightOrange font-semibold transition-colors"
