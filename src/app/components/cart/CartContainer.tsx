@@ -9,8 +9,13 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import { resetCart } from "@/app/redux";
 import { useCalculatePrices } from "@/app/hooks";
 import { Button } from "../button";
+import { Session } from "next-auth";
 
-export const CartContainer = () => {
+interface CartContainerProps {
+  session: Session | null;
+}
+
+export const CartContainer = ({ session }: CartContainerProps) => {
   const dispatch = useDispatch();
   const { cart } = useSelector((state: StoreState) => state?.marketVista);
   const {
@@ -43,6 +48,7 @@ export const CartContainer = () => {
             numberOfItems={numberOfItems}
             deliveryFee={deliveryFee}
             grandTotal={grandTotal}
+            session={session}
           />
         </div>
       ) : (
