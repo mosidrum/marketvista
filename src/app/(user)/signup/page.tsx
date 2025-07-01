@@ -4,10 +4,12 @@ import { Container } from "@/app/components";
 import React, { useState } from "react";
 import google from "@/app/assets/google.png";
 import Image from "next/image";
-import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { Button } from "@/app";
 import { FormField, NameField, validateSignUpForm, FormData, FormErrors } from "@/app/components/auth";
+import {signUpUser, signInWithGoogle, showAlert} from "@/app/utils";
+import { useRouter } from "next/navigation";
+import {AlertType} from "@/app/types";
 
 export default function SignUpPage() {
   const [formData, setFormData] = useState<FormData>({
@@ -20,6 +22,8 @@ export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [authError, setAuthError] = useState<string>("");
+  const router = useRouter();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -35,6 +39,10 @@ export default function SignUpPage() {
         [name]: undefined
       }));
     }
+    
+    if (authError) {
+      setAuthError("");
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -48,23 +56,46 @@ export default function SignUpPage() {
     }
 
     setIsLoading(true);
+    setAuthError("");
     
-    // Log form values to console
-    console.log("Signup Form Data:", formData);
-    
-    // Simulate API call delay
-    setTimeout(() => {
+    try {
+      const result = await signUpUser({
+        name: formData.name || "",
+        email: formData.email,
+        password: formData.password
+      });
+
+      if (result.success && result.user) {
+
+        showAlert(`User signed in successfully`, AlertType.SUCCESS,);
+        router.push("/dashboard");
+      } else {
+        showAlert(result.error as string, AlertType.ERROR,);
+
+        setAuthError(result.error || "Signup failed");
+      }
+    } catch (error) {
+      showAlert(error as unknown as string || "An unexpected error occurred. Please try again.", AlertType.ERROR,);
+      setAuthError("An unexpected error occurred. Please try again.");
+    } finally {
       setIsLoading(false);
-      // Here you would typically call your signup API
-      console.log("Form submitted successfully!");
-    }, 1000);
+    }
   };
 
   const handleGoogleSignIn = async () => {
     try {
-      await signIn("google", { callbackUrl: "/dashboard" });
+      const result = await signInWithGoogle();
+      
+      if (result.success && result.user) {
+        console.log("User signed up with Google successfully:", result.user);
+        // Redirect to dashboard or home page
+        router.push("/dashboard");
+      } else {
+        setAuthError(result.error || "Google sign-up failed");
+      }
     } catch (error) {
-      console.error("Google sign-in error:", error);
+      console.error("Google sign-up error:", error);
+      setAuthError("An unexpected error occurred during Google sign-up. Please try again.");
     }
   };
 
@@ -77,6 +108,12 @@ export default function SignUpPage() {
         </div>
 
         <div className="bg-accentWhite rounded-lg shadow-custom p-8">
+          {authError && (
+            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-md">
+              {authError}
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Name Field */}
             <NameField

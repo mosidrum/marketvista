@@ -3,7 +3,6 @@ import React from "react";
 import { MdAdd } from "react-icons/md";
 import { FormattedPrice } from "@/app";
 import { Button } from "@/app";
-import { Session } from "next-auth";
 
 type CartSummaryProps = Record<
   | "originalTotal"
@@ -13,7 +12,7 @@ type CartSummaryProps = Record<
   | "grandTotal",
   number
 > & {
-  session: Session | null;
+  isAuthenticated: boolean;
 };
 
 export const CartSummary = ({
@@ -22,7 +21,7 @@ export const CartSummary = ({
   numberOfItems,
   deliveryFee,
   grandTotal,
-  session,
+  isAuthenticated,
 }: CartSummaryProps) => {
   return (
     <div className="w-full md:w-2/5 p-8 shadow-custom rounded-md">
@@ -76,7 +75,7 @@ export const CartSummary = ({
             className="text-lightGreen font-bold"
           />
         </div>
-        {session ? (
+        {isAuthenticated ? (
           <Button onClick={() => {}}>Proceed to checkout</Button>
         ) : (
          <div className='w-full bg-lightOrange p-2 rounded-md text-center text-white'>

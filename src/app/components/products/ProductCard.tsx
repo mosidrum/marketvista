@@ -5,17 +5,16 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { MdStar } from "react-icons/md";
-import { FormattedPrice } from "../FormattedPrice";
+import { FormattedPrice } from "@/app";
 import { useDispatch, useSelector } from "react-redux";
 import { decreaseQuantity, increaseQuantity } from "@/app/redux";
 import { HiMinus, HiPlus } from "react-icons/hi";
-import { ButtonAction, ProductButton } from "../button";
+import { ButtonAction, ProductButton } from "@/app";
 
 export const ProductCard = ({ item }: { item: ProductionDataType }) => {
   const dispatch = useDispatch();
   const { cart } = useSelector((state: StoreState) => state?.marketVista);
   const isExist = cart.find((cartItem) => cartItem._id === item._id);
-  console.log({ isExist });
 
   return (
     <div className="border border-px border-lightText/40 rounded-md relative group overflow-hidden flex flex-col">

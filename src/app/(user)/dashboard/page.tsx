@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
-import { signOut } from 'next-auth/react';
+import { useAuth } from '@/app/hooks';
+import { useRouter } from 'next/navigation';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -15,6 +16,8 @@ import {
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
 export default function DashboardPage() {
+    const { logout } = useAuth();
+    const router = useRouter();
 
     const [orders, setOrders] = useState([
       { id: 'ORD-1234', date: '2025-06-15', status: 'Delivered', total: 129.99, items: 3 },
@@ -38,7 +41,12 @@ export default function DashboardPage() {
     };
 
     const handleLogout = async () => {
-      await signOut({ callbackUrl: '/' });
+      try {
+        await logout();
+        router.push('/');
+      } catch (error) {
+        console.error('Logout failed:', error);
+      }
     };
 
     return (

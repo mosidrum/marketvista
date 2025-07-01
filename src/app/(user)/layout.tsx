@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Footer, Layout, Navbar } from "../components";
 import { Toaster } from "react-hot-toast";
-import { SessionProvider } from "next-auth/react";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -31,24 +30,22 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased pt-20`}
       >
-        <SessionProvider>
-          <Layout>
-            <Navbar />
-            <Toaster
-              position="top-right"
-              toastOptions={{
-                duration: 3000,
-                style: {
-                  background: "#100c08",
-                  color: "#ffffff",
-                },
-              }}
-              gutter={12}
-            />
-            {children}
-            <Footer />
-          </Layout>
-        </SessionProvider>
+        <Layout>
+          <Navbar />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 3000,
+              style: {
+                background: "#100c08",
+                color: "#ffffff",
+              },
+            }}
+            gutter={12}
+          />
+          {children}
+          <Footer />
+        </Layout>
       </body>
     </html>
   );

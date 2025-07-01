@@ -1,13 +1,15 @@
 "use client";
 
-import { Container } from "@/app/components";
-import React, { useState } from "react";
+import {Container} from "@/app/components";
+import React, {useState} from "react";
 import google from "@/app/assets/google.png";
 import Image from "next/image";
-import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { Button } from "@/app";
-import { FormField, validateSignInForm, FormData, FormErrors } from "@/app/components/auth";
+import {Button} from "@/app";
+import {FormData, FormErrors, FormField, validateSignInForm} from "@/app/components/auth";
+import {showAlert, signInUser, signInWithGoogle} from "@/app/utils";
+import {useRouter} from "next/navigation";
+import {AlertType} from "@/app/types";
 
 export default function SignInPage() {
   const [formData, setFormData] = useState<FormData>({
@@ -17,6 +19,8 @@ export default function SignInPage() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [authError, setAuthError] = useState<string>("");
+  const router = useRouter();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -25,12 +29,15 @@ export default function SignInPage() {
       [name]: value
     }));
     
-    // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({
         ...prev,
         [name]: undefined
       }));
+    }
+    
+    if (authError) {
+      setAuthError("");
     }
   };
 
@@ -45,23 +52,44 @@ export default function SignInPage() {
     }
 
     setIsLoading(true);
+    setAuthError("");
     
-    // Log form values to console
-    console.log("Signin Form Data:", formData);
-    
-    // Simulate API call delay
-    setTimeout(() => {
+    try {
+      const result = await signInUser({
+        email: formData.email,
+        password: formData.password
+      });
+
+      if (result.success && result.user) {
+        router.push("/dashboard");
+        showAlert(`User signed in successfully`, AlertType.SUCCESS);
+      } else {
+        setAuthError(result.error || "Sign in failed");
+        showAlert(result.error as string, AlertType.ERROR,);
+
+      }
+    } catch (error) {
+      showAlert(error as unknown as string || "An unexpected error occurred. Please try again.", AlertType.ERROR,);
+      setAuthError("An unexpected error occurred. Please try again.");
+    } finally {
       setIsLoading(false);
-      // Here you would typically call your signin API
-      console.log("Form submitted successfully!");
-    }, 1000);
+    }
   };
 
   const handleGoogleSignIn = async () => {
     try {
-      await signIn("google", { callbackUrl: "/dashboard" });
+      const result = await signInWithGoogle();
+      
+      if (result.success && result.user) {
+        showAlert(`User signed in successfully`, AlertType.SUCCESS,);
+        router.push("/dashboard");
+      } else {
+        showAlert(result.error as string, AlertType.ERROR,);
+        setAuthError(result.error || "Google sign-in failed");
+      }
     } catch (error) {
-      console.error("Google sign-in error:", error);
+      showAlert(error as unknown as string || "An unexpected error occurred. Please try again.", AlertType.ERROR,);
+      setAuthError("An unexpected error occurred during Google sign-in. Please try again.");
     }
   };
 
@@ -74,6 +102,12 @@ export default function SignInPage() {
         </div>
 
         <div className="bg-accentWhite rounded-lg shadow-custom p-8">
+          {authError && (
+            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-md">
+              {authError}
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email Field */}
             <FormField
@@ -86,7 +120,6 @@ export default function SignInPage() {
               error={errors.email}
             />
 
-            {/* Password Field */}
             <FormField
               type="password"
               id="password"
@@ -108,7 +141,6 @@ export default function SignInPage() {
               </Link>
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               disabled={isLoading}
