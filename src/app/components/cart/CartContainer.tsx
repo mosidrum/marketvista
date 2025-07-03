@@ -30,7 +30,7 @@ export const CartContainer = () => {
         Back
       </Link>
       {cart.length > 0 ? (
-        <div className="flex flex-col md:flex-row justify-between items-start">
+        <div className="flex flex-col md:flex-row gap-3 justify-between items-start">
           <div className="w-full">
             <div className="flex justify-end">
               <Button onClick={() => dispatch(resetCart())}>Reset Cart</Button>
