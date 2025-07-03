@@ -1,7 +1,7 @@
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
-import { ProductionDataType, StoreState } from "../../types";
+import { StoreState } from "../../types";
 import { CartItem } from "./CartItem";
 import { CartSummary } from "./CartSummary";
 import Link from "next/link";
@@ -34,9 +34,6 @@ export const CartContainer = () => {
           <div className="w-full">
             <div className="flex justify-end">
               <Button onClick={() => dispatch(resetCart())}>Reset Cart</Button>
-            </div>
-            <div className="text-2xl font-bold text-lightOrange my-8">
-              Hello
             </div>
             {cart.map((item) => (
               <CartItem item={item} key={item._id} />

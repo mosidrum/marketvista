@@ -1,8 +1,8 @@
 import Link from "next/link";
 import React from "react";
 import { MdAdd } from "react-icons/md";
-import { FormattedPrice } from "../FormattedPrice";
-import { Button } from "../button/Button";
+import { FormattedPrice } from "@/app";
+import { Button } from "@/app";
 
 type CartSummaryProps = Record<
   | "originalTotal"
