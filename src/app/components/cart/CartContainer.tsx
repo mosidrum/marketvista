@@ -29,7 +29,33 @@ export const CartContainer = () => {
         <IoIosArrowRoundBack size={24} />
         Back
       </Link>
-      <div className="text-2xl font-bold text-lightOrange my-8">Hello</div>
+      {cart.length > 0 ? (
+        <div className="flex flex-col md:flex-row justify-between items-start">
+          <div className="w-full">
+            <div className="flex justify-end">
+              <Button onClick={() => dispatch(resetCart())}>Reset Cart</Button>
+            </div>
+            <div className="text-2xl font-bold text-lightOrange my-8">
+              Hello
+            </div>
+            {cart.map((item) => (
+              <CartItem item={item} key={item._id} />
+            ))}
+          </div>
+          <CartSummary
+            originalTotal={originalTotal}
+            moneyToTakeOff={moneyToTakeOff}
+            numberOfItems={numberOfItems}
+            deliveryFee={deliveryFee}
+            grandTotal={grandTotal}
+            isAuthenticated={isAuthenticated}
+          />
+        </div>
+      ) : (
+        <div className="text-2xl font-bold text-lightOrange my-8">
+          NO product in your cart
+        </div>
+      )}
     </div>
   );
 };
