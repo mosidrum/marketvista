@@ -13,6 +13,7 @@ type CartSummaryProps = Record<
   number
 > & {
   isAuthenticated: boolean;
+  handleCheckOut: () => void;
 };
 
 export const CartSummary = ({
@@ -22,6 +23,7 @@ export const CartSummary = ({
   deliveryFee,
   grandTotal,
   isAuthenticated,
+  handleCheckOut,
 }: CartSummaryProps) => {
   return (
     <div className="w-full md:w-2/5 p-8 shadow-custom rounded-md">
@@ -76,7 +78,7 @@ export const CartSummary = ({
           />
         </div>
         {isAuthenticated ? (
-          <Button onClick={() => {}}>Proceed to checkout</Button>
+          <Button onClick={() => handleCheckOut()}>Proceed to checkout</Button>
         ) : (
          <div className='w-full bg-lightOrange p-2 rounded-md text-center text-white'>
            <Link href="/signin">Sign in to checkout</Link>

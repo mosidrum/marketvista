@@ -1,7 +1,7 @@
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
-import { StoreState } from "../../types";
+import {AlertType, StoreState} from "@/app";
 import { CartItem } from "./CartItem";
 import { CartSummary } from "./CartSummary";
 import Link from "next/link";
@@ -10,10 +10,12 @@ import { resetCart } from "@/app/redux";
 import { useCalculatePrices } from "@/app/hooks";
 import { Button } from "@/app";
 import { useAuth } from "@/app/hooks";
+import {showAlert} from "@/app/utils";
 
 export const CartContainer = () => {
   const dispatch = useDispatch();
-  const { isAuthenticated } = useAuth();
+  const { user, isAuthenticated } = useAuth();
+
   const { cart } = useSelector((state: StoreState) => state?.marketVista);
   const {
     originalTotal,
@@ -22,6 +24,22 @@ export const CartContainer = () => {
     deliveryFee,
     grandTotal,
   } = useCalculatePrices(cart);
+
+  const handleCheckOut = async () => {
+    showAlert(`User signed in successfully`, AlertType.SUCCESS);
+    const response = await fetch("/api/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        items: cart,
+        email: user?.email,
+      }),
+    });
+    const result = await response.json();
+    console.log(result);
+  };
 
   return (
     <div>
@@ -46,6 +64,7 @@ export const CartContainer = () => {
             deliveryFee={deliveryFee}
             grandTotal={grandTotal}
             isAuthenticated={isAuthenticated}
+            handleCheckOut={handleCheckOut}
           />
         </div>
       ) : (

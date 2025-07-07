@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { User } from 'firebase/auth';
 import { getCurrentUser, onAuthStateChanged, signOutUser } from '@/app/utils';
@@ -7,18 +9,15 @@ export const useAuth = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Get initial user state
     const currentUser = getCurrentUser();
     setUser(currentUser);
     setLoading(false);
 
-    // Listen for auth state changes
     const unsubscribe = onAuthStateChanged((user) => {
       setUser(user);
       setLoading(false);
     });
 
-    // Cleanup subscription
     return () => unsubscribe();
   }, []);
 
