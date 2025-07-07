@@ -19,7 +19,7 @@ export const Button = ({
       disabled={disable}
       onClick={onClick}
       className={twMerge(
-        "bg-lightOrange text-base text-white hover:bg-darkOrange hoverEffect md:px-4 md:py-2 rounded-lg font-semibold",
+        "bg-lightOrange text-base text-white hover:bg-darkOrange hoverEffect px-4 py-2 rounded-lg font-semibold",
         className
       )}
     >
