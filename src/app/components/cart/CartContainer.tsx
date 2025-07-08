@@ -26,7 +26,6 @@ export const CartContainer = () => {
   } = useCalculatePrices(cart);
 
   const handleCheckOut = async () => {
-    showAlert(`User signed in successfully`, AlertType.SUCCESS);
     const response = await fetch("/api/checkout", {
       method: "POST",
       headers: {

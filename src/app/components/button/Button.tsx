@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 interface Props {
   className?: string;
   children: ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   disable?: boolean;
 }
 

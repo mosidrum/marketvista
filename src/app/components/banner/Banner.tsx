@@ -1,12 +1,12 @@
 import { getBannerData } from "@/lib";
 import React from "react";
-import { Container } from "../Container";
+import { Container } from "@/app";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
-import { Button } from "../button";
+import { Button } from "@/app";
 import { BannerDataType } from "@/app/types";
 import Link from "next/link";
-import { FormattedPrice } from "../FormattedPrice";
+import { FormattedPrice } from "@/app";
 
 export const Banner = async () => {
   const bannerData = await getBannerData();
