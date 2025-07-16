@@ -56,7 +56,9 @@ export const SuccessPayment = ({ id }: { id: string }) => {
           {isLoading ? (
                 <Loader title="payment is processing... Please don not close this page" />
 
-          ) : ()}
+          ) : (
+                  
+          )}
     </div>
   );
 };
