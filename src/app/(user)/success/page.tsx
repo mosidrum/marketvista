@@ -1,5 +1,4 @@
-import { Container, SuccessPayment } from "@/app";
-import { redirect } from "next/navigation";
+import { Container } from "@/app";
 
 interface SuccessPageProps {
   searchParams: {
@@ -9,12 +8,5 @@ interface SuccessPageProps {
 
 export default function SuccessPage({ searchParams }: SuccessPageProps) {
   console.log(searchParams?.session_id);
-  if (!searchParams?.session_id) {
-    redirect("/");
-  }
-  return (
-    <Container>
-      <SuccessPayment id={searchParams?.session_id} />
-    </Container>
-  );
+  return <Container>Success page</Container>;
 }

@@ -11,4 +11,3 @@ export * from "./Layout";
 export * from "./cart/CartContainer";
 export * from "./Navbar";
 export * from "./auth";
-export * from "./successpayment";
