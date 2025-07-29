@@ -49,7 +49,7 @@ export const SuccessContainer = ({ id }: { id: string }) => {
 
       const data = await response.json();
       if (data?.success) {
-        dispatch(resetCart());
+        // dispatch(resetCart());
         showAlert(data?.message, AlertType.SUCCESS);
       }
     } catch (error) {
