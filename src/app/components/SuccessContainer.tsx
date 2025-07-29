@@ -9,7 +9,7 @@ import {
   useAuth,
 } from "@/app";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   HiCheckCircle,
   HiHome,
@@ -17,7 +17,6 @@ import {
   HiMail,
 } from "react-icons/hi";
 import Link from "next/link";
-import { Cart } from "./cart";
 
 export const SuccessContainer = ({ id }: { id: string }) => {
   const { cart } = useSelector((state: StoreState) => state?.marketVista);
@@ -25,18 +24,12 @@ export const SuccessContainer = ({ id }: { id: string }) => {
   const { user } = useAuth();
   const [totalAmount, setTotalAmount] = useState(0);
   const [loading, setLoading] = useState(false);
-  const hasSavedOrder = useRef(false);
 
-  // Calculate totalAmount when cart changes
   useEffect(() => {
-    console.log("here");
-    console.log({ cart });
-
     const total = cart.reduce(
       (sum, item) => sum + item.price * item.quantity,
       0
     );
-    console.log("total", total);
     setTotalAmount(total);
   }, [cart]);
 
@@ -58,7 +51,6 @@ export const SuccessContainer = ({ id }: { id: string }) => {
       if (data?.success) {
         dispatch(resetCart());
         showAlert(data?.message, AlertType.SUCCESS);
-        hasSavedOrder.current = true;
       }
     } catch (error) {
       console.error("Error saving order:", error);
@@ -67,14 +59,8 @@ export const SuccessContainer = ({ id }: { id: string }) => {
     }
   };
 
-  // Save order when user, cart, and totalAmount are ready
   useEffect(() => {
-    if (
-      !hasSavedOrder.current &&
-      user?.email &&
-      cart.length > 0 &&
-      totalAmount > 0
-    ) {
+    if (user?.email && cart.length > 0 && totalAmount > 0) {
       handleSaveOrder();
     }
   }, [user, cart, totalAmount]);
