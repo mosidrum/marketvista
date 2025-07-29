@@ -1,18 +1,22 @@
-import { Container, SuccessContainer } from "@/app";
-import { redirect } from "next/navigation";
+"use client";
 
-interface SuccessPageProps {
-  searchParams: {
-    session_id?: string;
-  };
-}
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { SuccessContainer } from "@/app";
 
-export default function SuccessPage({ searchParams }: SuccessPageProps) {
-  const id = searchParams?.session_id;
+export default function SuccessPage() {
+  const searchParams = useSearchParams();
+  const sessionId = searchParams.get("session_id");
+  const router = useRouter();
 
-  if (!id) {
-    redirect("/");
-  }
+  useEffect(() => {
+    if (!sessionId) {
+      router.push("/");
+    }
+  }, [sessionId]);
 
-  return <SuccessContainer id={id} />;
+  if (!sessionId) return null;
+
+  return <SuccessContainer id={sessionId} />;
 }
