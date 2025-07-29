@@ -9,25 +9,25 @@ export const POST = async (request: NextRequest) => {
 
     console.log(cart, id, email, totalAmount);
 
-    // if (cart?.length) {
-    //   const orderItem = {
-    //     amount: totalAmount,
-    //     items: cart,
-    //   };
+    if (cart?.length) {
+      const orderItem = {
+        amount: totalAmount,
+        items: cart || [],
+      };
 
-    //   const userOrderRef = adminDB
-    //     .collection("users")
-    //     .doc(email)
-    //     .collection("orders")
-    //     .doc(id);
+      const userOrderRef = adminDB
+        .collection("users")
+        .doc(email)
+        .collection("orders")
+        .doc(id);
 
-    //   const userDoc = await userOrderRef.get();
-    //   if (!userDoc.exists) {
-    //     await userOrderRef.set({ email });
-    //   }
+      const userDoc = await userOrderRef.get();
+      if (!userDoc.exists) {
+        await userOrderRef.set({ email });
+      }
 
-    //   await userOrderRef.set({ value: orderItem }, { merge: true });
-    // }
+      await userOrderRef.set({ value: orderItem }, { merge: true });
+    }
 
     return NextResponse.json(
       {
