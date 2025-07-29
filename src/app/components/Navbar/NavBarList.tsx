@@ -13,7 +13,6 @@ import { AlertType } from "@/app/types";
 
 export const NavbarList = () => {
   const { user, loading, logout, isAuthenticated } = useAuth();
-  console.log("nav", user);
 
   const handleLogout = async () => {
     try {

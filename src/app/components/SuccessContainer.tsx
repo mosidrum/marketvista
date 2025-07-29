@@ -17,6 +17,7 @@ import {
   HiMail,
 } from "react-icons/hi";
 import Link from "next/link";
+import { Cart } from "./cart";
 
 export const SuccessContainer = ({ id }: { id: string }) => {
   const { cart } = useSelector((state: StoreState) => state?.marketVista);
@@ -29,11 +30,13 @@ export const SuccessContainer = ({ id }: { id: string }) => {
   // Calculate totalAmount when cart changes
   useEffect(() => {
     console.log("here");
+    console.log({ cart });
 
     const total = cart.reduce(
       (sum, item) => sum + item.price * item.quantity,
       0
     );
+    console.log("total", total);
     setTotalAmount(total);
   }, [cart]);
 
