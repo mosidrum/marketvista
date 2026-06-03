@@ -95,9 +95,6 @@ export const NavbarList = () => {
         ))}
         <CartNavItem />
         <AuthSection />
-        <Link href="/studio" className="navBarItem">
-          Studio
-        </Link>
       </div>
 
       {/* Mobile: cart + hamburger */}
@@ -129,13 +126,6 @@ export const NavbarList = () => {
             <div className="py-4 border-b border-lightText/10">
               <AuthSection mobile />
             </div>
-            <Link
-              href="/studio"
-              onClick={close}
-              className="navBarItem py-4 border-b border-lightText/10 text-base"
-            >
-              Studio
-            </Link>
           </nav>
         </div>
       )}
