@@ -15,8 +15,8 @@ export const AuthStatus = () => {
     try {
       await logout();
       router.push('/');
-    } catch (error) {
-      console.error('Logout failed:', error);
+    } catch {
+      // logout errors are thrown from useAuth and handled upstream
     }
   };
 

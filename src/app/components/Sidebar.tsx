@@ -7,7 +7,6 @@ import Image from "next/image";
 
 export const Sidebar = async () => {
   const session = await auth();
-  console.log(session);
 
   return (
     <div className="fixed top-80 right-2 z-20 gap-2 flex flex-col">

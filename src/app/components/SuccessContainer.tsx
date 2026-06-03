@@ -52,8 +52,8 @@ export const SuccessContainer = ({ id }: { id: string }) => {
         dispatch(resetCart());
         showAlert(data?.message, AlertType.SUCCESS);
       }
-    } catch (error) {
-      console.error("Error saving order:", error);
+    } catch {
+      showAlert("Failed to save your order. Please contact support.", AlertType.ERROR);
     } finally {
       setLoading(false);
     }

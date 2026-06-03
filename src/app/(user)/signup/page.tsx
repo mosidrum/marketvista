@@ -87,14 +87,12 @@ export default function SignUpPage() {
       const result = await signInWithGoogle();
       
       if (result.success && result.user) {
-        console.log("User signed up with Google successfully:", result.user);
-        // Redirect to dashboard or home page
+        showAlert("Signed up with Google successfully", AlertType.SUCCESS);
         router.push("/dashboard");
       } else {
         setAuthError(result.error || "Google sign-up failed");
       }
-    } catch (error) {
-      console.error("Google sign-up error:", error);
+    } catch {
       setAuthError("An unexpected error occurred during Google sign-up. Please try again.");
     }
   };
