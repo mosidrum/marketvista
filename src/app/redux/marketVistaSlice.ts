@@ -52,10 +52,10 @@ export const marketVistaSlice = createSlice({
         (item) => item._id === action.payload._id
       );
       state.wishList = existingItem
-        ? state.wishList.filter((item) => item._id === action.payload._id)
+        ? state.wishList.filter((item) => item._id !== action.payload._id)
         : [...state.wishList, action.payload];
     },
-    resetWhishList: (state) => {
+    resetWishList: (state) => {
       state.wishList = [];
     },
     addUser: (state, action) => {
@@ -74,7 +74,7 @@ export const {
   removeItemFromCart,
   resetCart,
   addToWishList,
-  resetWhishList,
+  resetWishList,
   addUser,
   removeUser,
 } = marketVistaSlice.actions;
