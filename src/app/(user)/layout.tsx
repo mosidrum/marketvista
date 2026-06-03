@@ -35,7 +35,9 @@ export default function RootLayout({
             }}
             gutter={12}
           />
-          {children}
+          <main className="pt-20 min-h-[calc(100vh-80px)]">
+            {children}
+          </main>
           <Footer />
         </Layout>
       </body>

@@ -50,9 +50,9 @@ export const CartContainer = () => {
 
     return (
         <div>
-            <Link href={"/shop"} className="flex items-center gap-2">
-                <IoIosArrowRoundBack size={24} />
-                Back
+            <Link href="/shop" className="inline-flex items-center gap-1 text-sm text-lightText hover:text-darkOrange hoverEffect mb-4">
+                <IoIosArrowRoundBack size={20} />
+                Continue shopping
             </Link>
             {cart.length > 0 ? (
                 <div className="flex flex-col md:flex-row gap-3 justify-between items-start">
@@ -75,8 +75,13 @@ export const CartContainer = () => {
                     />
                 </div>
             ) : (
-                <div className="text-2xl font-bold text-lightOrange my-8">
-                    NO product in your cart
+                <div className="flex flex-col items-center justify-center py-16 gap-4 text-center">
+                    <p className="text-6xl">🛒</p>
+                    <h2 className="text-2xl font-bold text-lightOrange">Your cart is empty</h2>
+                    <p className="text-lightText text-sm">Looks like you haven&apos;t added anything yet.</p>
+                    <Link href="/shop" className="mt-2 bg-darkOrange text-white px-6 py-2.5 rounded-md text-sm font-semibold hover:bg-lightOrange hoverEffect">
+                        Browse Products
+                    </Link>
                 </div>
             )}
         </div>

@@ -22,7 +22,7 @@ export const CartItem = ({ item }: CartItemType) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="w-full h-20 flex justify-between gap-4 p-4 mt-4 rounded-md shadow-custom">
+    <div className="w-full min-h-[72px] flex justify-between gap-4 p-4 mt-4 rounded-md shadow-custom">
       <div className="flex items-center gap-4">
         <Link href={`/product/${item.slug.current}`}>
           <Image

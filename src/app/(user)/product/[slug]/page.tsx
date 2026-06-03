@@ -1,4 +1,5 @@
-import { AddToCartButton, Container, FormattedPrice } from "@/app/components";
+import { Container, FormattedPrice } from "@/app/components";
+import { ButtonAction, ProductButton } from "@/app/components/button/ProductButton";
 import { ProductCard } from "@/app/components/products/ProductCard";
 import { ProductionDataType } from "@/app/types";
 import { getBestSellersData } from "@/lib";
@@ -26,9 +27,9 @@ export default async function SingleProduct({ params }: Props) {
   const bestSellersProducts: ProductionDataType[] = await getBestSellersData();
 
   return (
-    <Container className="my-10 bg-bgLight">
+    <Container className="py-8 bg-bgLight rounded-lg">
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-4 h-full p-4 ">
-        <div className="h-ful xl:col-span-2">
+        <div className="xl:col-span-2">
           <Image
             src={urlFor(product?.image).url()}
             alt={product.title}
@@ -39,7 +40,7 @@ export default async function SingleProduct({ params }: Props) {
         </div>
         <div className="w-full md:col-span-2 xl:col-span-3 xl:p-14 flex flex-col gap-6 justify-center">
           <div className="flex flex-col gap-5">
-            <h2>{product?.title}</h2>
+            <h1 className="text-2xl md:text-3xl font-bold">{product?.title}</h1>
             <div className="flex items-center gap-4">
               <p className="text-lg font-normal text-gray-500 line-through">
                 <FormattedPrice amount={product.rowprice} />
@@ -81,7 +82,7 @@ export default async function SingleProduct({ params }: Props) {
             <p className="text-sm text-gray-500">
               Be the first to leave a review
             </p>
-            <AddToCartButton item={product} className="rounded-md py-3" />
+            <ProductButton type={ButtonAction.ADD} item={product} className="rounded-md py-3" />
             <p className="font-normal text-sm">
               <span className="font-medium text-base">Categories:</span>
               Spring, collection, Streetwears, women Tags: feautured SKU: N/A
@@ -89,7 +90,8 @@ export default async function SingleProduct({ params }: Props) {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <h2 className="text-xl font-bold mt-10 mb-5">You may also like</h2>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
         {bestSellersProducts.map((item, index) => (
           <ProductCard key={index} item={item} />
         ))}

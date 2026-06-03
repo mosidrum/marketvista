@@ -6,7 +6,7 @@ import { PiChats } from "react-icons/pi";
 const data = [
   {
     title: "Free delivery",
-    description: "If Ordering price is above $500",
+    description: "If ordering price is above $500",
     icon: <GoRocket />,
   },
   {
@@ -20,7 +20,7 @@ const data = [
     icon: <FaWallet />,
   },
   {
-    title: "24hours Support",
+    title: "24h Support",
     description: "Dedicated support",
     icon: <PiChats />,
   },
@@ -28,16 +28,16 @@ const data = [
 
 export const Facilities = () => {
   return (
-    <div className="py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+    <div className="py-8 grid grid-cols-2 md:grid-cols-4 gap-4">
       {data.map((item, index) => (
         <div
           key={index}
-          className="flex flex-col sm:flex-row items-center gap-3"
+          className="flex flex-col sm:flex-row items-center gap-3 bg-bgLight rounded-lg p-4"
         >
-          <span className="text-3xl text-lightOrange">{item.icon}</span>
+          <span className="text-3xl text-lightOrange shrink-0">{item.icon}</span>
           <div className="text-center sm:text-left">
-            <h2 className="uppercase font-bold">{item.title}</h2>
-            <p className="text-sm text-lightText">{item.description}</p>
+            <h2 className="text-sm font-bold uppercase">{item.title}</h2>
+            <p className="text-xs text-lightText mt-0.5">{item.description}</p>
           </div>
         </div>
       ))}

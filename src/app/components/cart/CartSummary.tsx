@@ -26,13 +26,13 @@ export const CartSummary = ({
   handleCheckOut,
 }: CartSummaryProps) => {
   return (
-    <div className="w-full md:w-2/5 p-8 shadow-custom rounded-md">
+    <div className="w-full md:w-2/5 md:sticky md:top-24 p-6 shadow-custom rounded-md bg-white">
       <p className="text-2xl font-bold text-left mb-8 text-lightOrange">
         Summary
       </p>
-      <div className="flex flex-col space-y-12">
+      <div className="flex flex-col space-y-5">
         <div className="flex items-center justify-between">
-          <p className="text-lightOrange font-bold">Cupon code</p>
+          <p className="text-lightOrange font-bold">Coupon code</p>
           <input
             type="text"
             className="h-8 border border-lightOrange p-2 rounded-xl focus:outline-none"
