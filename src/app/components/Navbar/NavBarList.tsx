@@ -95,6 +95,11 @@ export const NavbarList = () => {
         ))}
         <CartNavItem />
         <AuthSection />
+        {user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL && (
+          <Link href="/studio" className="navBarItem text-darkOrange font-bold">
+            Studio
+          </Link>
+        )}
       </div>
 
       {/* Mobile: cart + hamburger */}
@@ -126,6 +131,15 @@ export const NavbarList = () => {
             <div className="py-4 border-b border-lightText/10">
               <AuthSection mobile />
             </div>
+            {user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL && (
+              <Link
+                href="/studio"
+                onClick={close}
+                className="navBarItem py-4 text-base text-darkOrange font-bold"
+              >
+                Studio ↗
+              </Link>
+            )}
           </nav>
         </div>
       )}
