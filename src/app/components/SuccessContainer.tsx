@@ -49,7 +49,7 @@ export const SuccessContainer = ({ id }: { id: string }) => {
 
       const data = await response.json();
       if (data?.success) {
-        // dispatch(resetCart());
+        dispatch(resetCart());
         showAlert(data?.message, AlertType.SUCCESS);
       }
     } catch (error) {
@@ -89,16 +89,16 @@ export const SuccessContainer = ({ id }: { id: string }) => {
                 email within the next few minutes.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-4">
-                <Link href="/">
+                <Link href="/shop">
                   <button className="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 hoverEffect text-white font-semibold rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1">
                     <HiHome className="mr-2 h-5 w-5" />
-                    Home
+                    Continue Shopping
                   </button>
                 </Link>
-                <Link href="/">
+                <Link href="/dashboard">
                   <button className="inline-flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-600 hoverEffect text-white font-semibold rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1">
                     <HiInformationCircle className="mr-2 h-5 w-5" />
-                    Orders
+                    My Orders
                   </button>
                 </Link>
                 <Link href="/">
