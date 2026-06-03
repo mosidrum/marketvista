@@ -61,7 +61,7 @@ export enum AlertType {
 
 export interface User {
   id: string;
-  nname: string;
+  name: string;
   email: string;
 }
 
