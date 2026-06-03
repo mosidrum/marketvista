@@ -6,6 +6,7 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { groq } from "next-sanity";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import React from "react";
 import { MdStar } from "react-icons/md";
 
@@ -16,14 +17,13 @@ interface Props {
 }
 
 export default async function SingleProduct({ params }: Props) {
-  const { slug } = await Promise.resolve(params);
+  const { slug } = params;
   const query = groq`*[_type == 'product' && slug.current == $slug][0]{
   ...
   }`;
-  const product: ProductionDataType = await client.fetch(query, { slug });
+  const product: ProductionDataType | null = await client.fetch(query, { slug });
+  if (!product) return notFound();
   const bestSellersProducts: ProductionDataType[] = await getBestSellersData();
-
-  console.log({ product });
 
   return (
     <Container className="my-10 bg-bgLight">
