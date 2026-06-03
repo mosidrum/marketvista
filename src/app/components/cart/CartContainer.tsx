@@ -10,6 +10,7 @@ import { resetCart } from "@/app/redux";
 import { useCalculatePrices } from "@/app/hooks";
 import { Button } from "@/app";
 import { useAuth } from "@/app/hooks";
+import { showAlert } from "@/app/utils";
 
 export const CartContainer = () => {
     const dispatch = useDispatch();
@@ -25,18 +26,26 @@ export const CartContainer = () => {
     } = useCalculatePrices(cart);
 
     const handleCheckOut = async () => {
-        const response = await fetch("/api/checkout", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                items: cart,
-                email: user?.email,
-            }),
-        });
-        const {url} = await response.json();
-        if (url) window.location.href = url;
+        try {
+            const response = await fetch("/api/checkout", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    items: cart,
+                    email: user?.email,
+                }),
+            });
+            if (!response.ok) {
+                showAlert("Checkout failed. Please try again.", AlertType.ERROR);
+                return;
+            }
+            const { url } = await response.json();
+            if (url) window.location.href = url;
+        } catch {
+            showAlert("Checkout failed. Please check your connection.", AlertType.ERROR);
+        }
     };
 
     return (
