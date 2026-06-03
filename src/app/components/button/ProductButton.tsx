@@ -42,7 +42,7 @@ export const ProductButton = ({ item, className, type }: Props) => {
         type === ButtonAction.ADD ? handleAddToCart(item) : removeFromCart(item)
       }
       className={twMerge(
-        `bg-accent text-white w-full py-2 border border-px border-accent hover:bg-darkOrange hover:border-darkOrange hoverEfffect font-semibold tracking-wide flex items-center justify-center gap-1`,
+        `bg-accent text-white w-full py-2 border border-px border-accent hover:bg-darkOrange hover:border-darkOrange hoverEffect font-semibold tracking-wide flex items-center justify-center gap-1`,
         className
       )}
     >

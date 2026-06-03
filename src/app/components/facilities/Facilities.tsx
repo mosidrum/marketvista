@@ -16,7 +16,7 @@ const data = [
   },
   {
     title: "Secure payment",
-    description: "100% secured paymenr]t",
+    description: "100% secured payment",
     icon: <FaWallet />,
   },
   {
@@ -28,7 +28,7 @@ const data = [
 
 export const Facilities = () => {
   return (
-    <div className="py-10 grid grid-col-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+    <div className="py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
       {data.map((item, index) => (
         <div
           key={index}

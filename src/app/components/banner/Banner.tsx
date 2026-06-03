@@ -30,7 +30,7 @@ export const Banner = async () => {
               {singleBanner?.description}
             </p>
           </div>
-          <Button className="w-36 py-2.5 text-sm">Showp Now</Button>
+          <Button className="w-36 py-2.5 text-sm">Shop Now</Button>
         </div>
         <Image
           src={urlFor(singleBanner?.image).url()}
