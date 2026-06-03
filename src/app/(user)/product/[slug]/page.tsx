@@ -12,13 +12,11 @@ import React from "react";
 import { MdStar } from "react-icons/md";
 
 interface Props {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 }
 
 export default async function SingleProduct({ params }: Props) {
-  const { slug } = params;
+  const { slug } = await params;
   const query = groq`*[_type == 'product' && slug.current == $slug][0]{
   ...
   }`;
