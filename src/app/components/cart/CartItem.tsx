@@ -39,32 +39,34 @@ export const CartItem = ({ item }: CartItemType) => {
         </div>
       </div>
       <div className="w-2/4 md:w-1/2 flex items-center justify-end gap-4 md:justify-between">
-        <div className="flex items-center gap-1 md:gap-6 px-2 py-1 rounded-lg">
+        <div className="flex items-center gap-1 md:gap-6 px-2 py-1 rounded-lg" role="group" aria-label="Quantity controls">
           <div className="w-4 md:w-6 flex justify-center">
             {item?.quantity > 1 && (
-              <div className="border border-lightOrange p-2 rounded-lg text-lightOrange">
-                <HiMinus
-                  className="hover:cursor-pointer"
-                  onClick={() => dispatch(decreaseQuantity(item._id))}
-                />
-              </div>
+              <button
+                aria-label={`Decrease quantity of ${item.title}`}
+                className="border border-lightOrange p-2 rounded-lg text-lightOrange"
+                onClick={() => dispatch(decreaseQuantity(item._id))}
+              >
+                <HiMinus aria-hidden="true" />
+              </button>
             )}
           </div>
-          <p className="font-medium">{item?.quantity}</p>
-          <div className="border border-lightOrange p-2 rounded-lg text-lightOrange">
-            <HiPlus
-              className="hover:cursor-pointer"
-              onClick={() => dispatch(increaseQuantity(item._id))}
-            />
-          </div>
+          <p className="font-medium" aria-label={`Quantity: ${item?.quantity}`}>{item?.quantity}</p>
+          <button
+            aria-label={`Increase quantity of ${item.title}`}
+            className="border border-lightOrange p-2 rounded-lg text-lightOrange"
+            onClick={() => dispatch(increaseQuantity(item._id))}
+          >
+            <HiPlus aria-hidden="true" />
+          </button>
         </div>
         <FormattedPrice
           amount={item?.price * item?.quantity}
           className="text-lightGreen"
         />
-        <FaTimes
-          className="hover:cursor-pointer"
-          size={20}
+        <button
+          aria-label={`Remove ${item.title} from cart`}
+          className="hover:cursor-pointer text-gray-500 hover:text-red-500 hoverEffect"
           onClick={() => {
             dispatch(removeItemFromCart(item?._id));
             showAlert(
@@ -72,7 +74,9 @@ export const CartItem = ({ item }: CartItemType) => {
               AlertType.SUCCESS
             );
           }}
-        />
+        >
+          <FaTimes aria-hidden="true" size={20} />
+        </button>
       </div>
     </div>
   );

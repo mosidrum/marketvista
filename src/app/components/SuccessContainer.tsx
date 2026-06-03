@@ -76,9 +76,9 @@ export const SuccessContainer = ({ id }: { id: string }) => {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="h-32 w-32 bg-green-100 rounded-full"></div>
               </div>
-              <HiCheckCircle className="relative mx-auto h-24 w-24 text-green-500" />
+              <HiCheckCircle className="relative mx-auto h-24 w-24 text-green-500" aria-hidden="true" />
             </div>
-            <h2 className="mt-6 text-3xl font-extrabold">Success!</h2>
+            <h2 className="mt-6 text-3xl font-extrabold" aria-live="polite">Payment successful!</h2>
             <p className="text-sm mt-2 text-gray-600">
               Your payment has been completed successfully!
             </p>
@@ -109,7 +109,7 @@ export const SuccessContainer = ({ id }: { id: string }) => {
                 </Link>
               </div>
             </div>
-            <div className="mt-10 flex justify-center space-x-4">
+            <div className="mt-10 flex justify-center space-x-4" aria-hidden="true">
               <div className="w-3 h-3 bg-green-300 rounded-full" />
               <div className="w-3 h-3 bg-green-300 rounded-full" />
               <div className="w-3 h-3 bg-green-300 rounded-full" />

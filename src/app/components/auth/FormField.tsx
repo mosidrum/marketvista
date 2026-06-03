@@ -50,6 +50,8 @@ export default function FormField({
           name={name}
           value={value}
           onChange={onChange}
+          aria-invalid={!!error}
+          aria-describedby={error ? `${id}-error` : undefined}
           className={`w-full pl-10 pr-12 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-darkOrange transition-colors ${
             error ? 'border-red-500' : 'border-gray-300 focus:border-darkOrange'
           }`}
@@ -59,14 +61,15 @@ export default function FormField({
           <button
             type="button"
             onClick={onTogglePassword}
+            aria-label={showPassword ? 'Hide password' : 'Show password'}
             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-lightText hover:text-accent transition-colors"
           >
-            {showPassword ? <MdVisibilityOff className="text-xl" /> : <MdVisibility className="text-xl" />}
+            {showPassword ? <MdVisibilityOff className="text-xl" aria-hidden="true" /> : <MdVisibility className="text-xl" aria-hidden="true" />}
           </button>
         )}
       </div>
       {error && (
-        <p className="text-red-500 text-sm mt-1">{error}</p>
+        <p id={`${id}-error`} className="text-red-500 text-sm mt-1" role="alert">{error}</p>
       )}
     </div>
   );

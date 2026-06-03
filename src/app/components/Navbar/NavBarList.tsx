@@ -43,7 +43,7 @@ export const NavbarList = () => {
             Studio
           </Link>
         </div>
-        <HiMenuAlt3 className="inline-flex md:hidden cursor-pointer text-2xl hover:text-darkOrange hoverEffect" />
+        <HiMenuAlt3 className="inline-flex md:hidden cursor-pointer text-2xl hover:text-darkOrange hoverEffect" aria-label="Open menu" role="button" />
       </>
     );
   }
@@ -86,7 +86,7 @@ export const NavbarList = () => {
             <button
               onClick={handleLogout}
               className="navBarItem flex items-center gap-2 text-red-600 hover:text-red-700"
-              title="Logout"
+              aria-label="Logout"
             >
               <span className="hidden sm:inline">Logout</span>
             </button>
@@ -102,7 +102,7 @@ export const NavbarList = () => {
           Studio
         </Link>
       </div>
-      <HiMenuAlt3 className="inline-flex md:hidden cursor-pointer text-2xl hover:text-darkOrange hoverEffect" />
+      <HiMenuAlt3 className="inline-flex md:hidden cursor-pointer text-2xl hover:text-darkOrange hoverEffect" aria-label="Open menu" role="button" />
     </>
   );
 };

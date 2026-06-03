@@ -64,24 +64,26 @@ export const ProductCard = ({ item }: { item: ProductionDataType }) => {
 
       <div className="h-8 flex items-center justify-center px-2 mb-2">
         {isExist && (
-          <div className="flex items-center justify-center space-x-5 md:gap-3">
+          <div className="flex items-center justify-center space-x-5 md:gap-3" role="group" aria-label="Quantity controls">
             <div className="w-4 md:w-6 flex justify-center">
               {isExist?.quantity > 1 && (
-                <div className="border border-lightOrange p-2 rounded-lg text-lightOrange">
-                  <HiMinus
-                    className="hover:cursor-pointer"
-                    onClick={() => dispatch(decreaseQuantity(item._id))}
-                  />
-                </div>
+                <button
+                  aria-label={`Decrease quantity of ${item.title}`}
+                  className="border border-lightOrange p-2 rounded-lg text-lightOrange"
+                  onClick={() => dispatch(decreaseQuantity(item._id))}
+                >
+                  <HiMinus aria-hidden="true" />
+                </button>
               )}
             </div>
-            <p className="font-bold">{isExist?.quantity}</p>
-            <div className="border border-lightOrange p-2 rounded-lg text-lightOrange">
-              <HiPlus
-                className="hover:cursor-pointer"
-                onClick={() => dispatch(increaseQuantity(item._id))}
-              />
-            </div>
+            <p className="font-bold" aria-label={`Quantity: ${isExist?.quantity}`}>{isExist?.quantity}</p>
+            <button
+              aria-label={`Increase quantity of ${item.title}`}
+              className="border border-lightOrange p-2 rounded-lg text-lightOrange"
+              onClick={() => dispatch(increaseQuantity(item._id))}
+            >
+              <HiPlus aria-hidden="true" />
+            </button>
           </div>
         )}
       </div>
